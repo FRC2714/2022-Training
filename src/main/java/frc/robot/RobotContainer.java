@@ -46,10 +46,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    driverAButton.whenPressed(new InstantCommand(climber::climberUp, climber));
-    driverBButton.whenPressed(new InstantCommand(climber::climberUp,climber));
-    driverXButton.whenPressed(climber.up());
-    driverYButton.whenPressed(climber.down());
+    driverAButton.whenHeld(new InstantCommand(climber::climberUp, climber));
+    driverBButton.whenHeld(new InstantCommand(climber::climberUp,climber));
+    driverXButton.whenHeld(climber.up());
+    driverYButton.whenHeld(climber.down());
   }
 
   /**

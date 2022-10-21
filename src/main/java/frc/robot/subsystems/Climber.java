@@ -14,6 +14,7 @@ import frc.robot.Constants.ClimberConstants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
@@ -50,18 +51,30 @@ public class Climber extends SubsystemBase {
     leftMotor.set(1);
     rightMotor.set(-1);
   }
+  
+  public void stop() {
+    leftMotor.set(0);
+    rightMotor.set(0);
+  }
 
   public Command up() {
-    return new InstantCommand(
+    return new StartEndCommand(
         () -> {
           climberUp();
+        },
+        () -> {
+          stop();
         });
   }
 
+
   public Command down() {
-    return new InstantCommand(
+    return new StartEndCommand(
         () -> {
           climberDown();
+        },
+        () -> {
+          stop();
         });
   }
 
